@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'scoreboard_persistence.dart';
 
 enum Possession { none, home, away }
 
@@ -71,6 +72,42 @@ class ScoreboardState extends ChangeNotifier {
 
   ScoreboardState() {
     _ticker = Ticker(_onTick);
+  }
+
+  Future<void> restore() async {
+    final saved = await ScoreboardPersistence.load();
+    if (saved == null) return;
+
+    _homeScore = saved.homeScore;
+    _awayScore = saved.awayScore;
+    _homeFouls = saved.homeFouls;
+    _awayFouls = saved.awayFouls;
+    _period = saved.period;
+    _possession = saved.possession;
+    _homeTeamName = saved.homeTeamName;
+    _awayTeamName = saved.awayTeamName;
+    _homeTeamColor = saved.homeTeamColor;
+    _awayTeamColor = saved.awayTeamColor;
+    _timeLeft = Duration(milliseconds: saved.timeLeftMs);
+    _initialTime = _timeLeft;
+    _accumulatedTime = Duration.zero;
+
+    if (saved.wasRunning && saved.savedAt != null && _timeLeft > Duration.zero) {
+      final elapsed = DateTime.now().difference(
+        DateTime.fromMillisecondsSinceEpoch(saved.savedAt!),
+      );
+      final adjusted = _timeLeft - elapsed;
+      _timeLeft = adjusted <= Duration.zero ? Duration.zero : adjusted;
+      _initialTime = _timeLeft;
+    }
+
+    notifyListeners();
+  }
+
+  @override
+  void notifyListeners() {
+    super.notifyListeners();
+    ScoreboardPersistence.save(this, isRunning: _ticker.isActive);
   }
 
   @override
@@ -330,6 +367,7 @@ class ScoreboardState extends ChangeNotifier {
     _awayTeamName = 'VIERAS';
     _homeTeamColor = Colors.white;
     _awayTeamColor = Colors.white;
+    ScoreboardPersistence.clear();
     notifyListeners();
   }
 }

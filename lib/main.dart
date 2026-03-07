@@ -4,9 +4,12 @@ import 'state/scoreboard_state.dart';
 import 'widgets/scoreboard_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  final state = ScoreboardState();
+  state.restore();
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ScoreboardState())],
+      providers: [ChangeNotifierProvider.value(value: state)],
       child: const BasketballScoreboardApp(),
     ),
   );

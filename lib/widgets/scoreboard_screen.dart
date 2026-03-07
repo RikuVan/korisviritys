@@ -16,22 +16,23 @@ class ScoreboardScreen extends StatefulWidget {
 }
 
 class _ScoreboardScreenState extends State<ScoreboardScreen> {
-  late final ScoreboardState _state;
+  ScoreboardState? _state;
 
   bool _onKey(KeyEvent event) {
-    if (event is! KeyDownEvent) return false;
+    if (_state == null || event is! KeyDownEvent) return false;
+    final state = _state!;
     final key = event.logicalKey;
     if (key == LogicalKeyboardKey.space) {
-      _state.toggleTimer();
+      state.toggleTimer();
       return true;
     }
     // Home team: 1/2/3, Away team: 8/9/0
-    if (key == LogicalKeyboardKey.digit1) { _state.adjustScore(isHome: true, amount: 1); return true; }
-    if (key == LogicalKeyboardKey.digit2) { _state.adjustScore(isHome: true, amount: 2); return true; }
-    if (key == LogicalKeyboardKey.digit3) { _state.adjustScore(isHome: true, amount: 3); return true; }
-    if (key == LogicalKeyboardKey.digit8) { _state.adjustScore(isHome: false, amount: 1); return true; }
-    if (key == LogicalKeyboardKey.digit9) { _state.adjustScore(isHome: false, amount: 2); return true; }
-    if (key == LogicalKeyboardKey.digit0) { _state.adjustScore(isHome: false, amount: 3); return true; }
+    if (key == LogicalKeyboardKey.digit1) { state.adjustScore(isHome: true, amount: 1); return true; }
+    if (key == LogicalKeyboardKey.digit2) { state.adjustScore(isHome: true, amount: 2); return true; }
+    if (key == LogicalKeyboardKey.digit3) { state.adjustScore(isHome: true, amount: 3); return true; }
+    if (key == LogicalKeyboardKey.digit8) { state.adjustScore(isHome: false, amount: 1); return true; }
+    if (key == LogicalKeyboardKey.digit9) { state.adjustScore(isHome: false, amount: 2); return true; }
+    if (key == LogicalKeyboardKey.digit0) { state.adjustScore(isHome: false, amount: 3); return true; }
     return false;
   }
 
