@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'pressable.dart';
 
@@ -9,66 +11,202 @@ class ControlsSection extends StatelessWidget {
   void _showTimeoutDialog(BuildContext context, ScoreboardState state) {
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.grey.shade900,
-        title: const Text(
-          "AIKALISÄ",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        content: const Text(
-          "Valitse aikalisän pituus:",
-          style: TextStyle(color: Colors.grey),
-        ),
-        actions: [
-          for (final entry in {'30s': 30, '1 min': 60, '2 min': 120}.entries)
-            TextButton(
-              onPressed: () {
-                Navigator.of(ctx).pop();
-                state.startTimeout("AIKALISÄ", Duration(seconds: entry.value));
-              },
-              child: Text(
-                entry.key,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
-              ),
+      builder: (ctx) {
+        final l10n = AppLocalizations.of(ctx);
+        return AlertDialog(
+          backgroundColor: Colors.grey.shade900,
+          title: Text(
+            l10n.timeout,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
-        ],
-      ),
+          ),
+          content: Text(
+            l10n.chooseTimeoutDuration,
+            style: const TextStyle(color: Colors.grey),
+          ),
+          actions: [
+            for (final entry in {'30s': 30, '1 min': 60, '2 min': 120}.entries)
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  state.startTimeout(
+                    l10n.timeout,
+                    Duration(seconds: entry.value),
+                  );
+                },
+                child: Text(
+                  entry.key,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
 
   void _showHalftimeDialog(BuildContext context, ScoreboardState state) {
+    final customController = TextEditingController();
+
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: Colors.grey.shade900,
-        title: const Text(
-          "PUOLIAIKA",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        content: const Text(
-          "Valitse puoliajan pituus:",
-          style: TextStyle(color: Colors.grey),
-        ),
-        actions: [
-          for (final entry in {'5 min': 5, '10 min': 10, '15 min': 15}.entries)
-            TextButton(
-              onPressed: () {
-                Navigator.of(ctx).pop();
-                state.startTimeout("PUOLIAIKA", Duration(minutes: entry.value));
-              },
-              child: Text(
-                entry.key,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+      builder: (ctx) {
+        final l10n = AppLocalizations.of(ctx);
+
+        void startCustom() {
+          final mins = int.tryParse(customController.text);
+          if (mins != null && mins > 0) {
+            Navigator.of(ctx).pop();
+            state.startTimeout(l10n.halftime, Duration(minutes: mins));
+          }
+        }
+
+        return StatefulBuilder(
+          builder: (ctx, setDialogState) => AlertDialog(
+            backgroundColor: Colors.grey.shade900,
+            title: Text(
+              l10n.halftime,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
-        ],
-      ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.chooseHalftimeDuration,
+                  style: const TextStyle(color: Colors.grey),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    for (final entry in {
+                      '5 min': 5,
+                      '10 min': 10,
+                      '15 min': 15,
+                    }.entries)
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                          state.startTimeout(
+                            l10n.halftime,
+                            Duration(minutes: entry.value),
+                          );
+                        },
+                        child: Text(
+                          entry.key,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Expanded(child: Divider(color: Colors.grey)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        l10n.or_,
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    const Expanded(child: Divider(color: Colors.grey)),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80,
+                      child: TextField(
+                        controller: customController,
+                        autofocus: false,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.black,
+                          hintText: '0',
+                          hintStyle: TextStyle(color: Colors.grey.shade700),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 8,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade700),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade700),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
+                        ),
+                        onSubmitted: (_) => startCustom(),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      l10n.min,
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    ),
+                    const SizedBox(width: 12),
+                    TextButton(
+                      onPressed: startCustom,
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.blue.shade800,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                      ),
+                      child: Text(
+                        l10n.start,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(ctx).pop(),
+                child: Text(
+                  l10n.cancel,
+                  style: const TextStyle(color: Colors.grey),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
+    final l10n = AppLocalizations.of(context);
 
     return Stack(
       alignment: Alignment.center,
@@ -83,9 +221,9 @@ class ControlsSection extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                "JAKSO  ",
-                style: TextStyle(
+              Text(
+                "${l10n.period}  ",
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -134,9 +272,9 @@ class ControlsSection extends StatelessWidget {
                     border: Border.all(color: Colors.grey.shade600),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: const Text(
-                    "PUOLIAIKA",
-                    style: TextStyle(
+                  child: Text(
+                    l10n.halftime,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
@@ -182,7 +320,7 @@ class ControlsSection extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: _ControlButton(
-                  "AIKALISÄ",
+                  l10n.timeout,
                   Colors.grey.shade800,
                   () => _showTimeoutDialog(context, state),
                   icon: Icons.timer,
@@ -194,7 +332,7 @@ class ControlsSection extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: _ControlButton(
-                  "SUMMERI",
+                  l10n.buzzer,
                   state.buzzerActive
                       ? Colors.red.shade800
                       : Colors.grey.shade800,

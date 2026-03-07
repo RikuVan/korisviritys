@@ -20,6 +20,16 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
 
   bool _onKey(KeyEvent event) {
     if (_state == null || event is! KeyDownEvent) return false;
+
+    // Don't handle shortcuts when a text field is focused
+    final focus = FocusManager.instance.primaryFocus;
+    if (focus != null && focus.context != null) {
+      if (focus.context!.findAncestorWidgetOfExactType<EditableText>() !=
+          null) {
+        return false;
+      }
+    }
+
     final state = _state!;
     final key = event.logicalKey;
     if (key == LogicalKeyboardKey.space) {
@@ -27,12 +37,30 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
       return true;
     }
     // Home team: 1/2/3, Away team: 8/9/0
-    if (key == LogicalKeyboardKey.digit1) { state.adjustScore(isHome: true, amount: 1); return true; }
-    if (key == LogicalKeyboardKey.digit2) { state.adjustScore(isHome: true, amount: 2); return true; }
-    if (key == LogicalKeyboardKey.digit3) { state.adjustScore(isHome: true, amount: 3); return true; }
-    if (key == LogicalKeyboardKey.digit8) { state.adjustScore(isHome: false, amount: 1); return true; }
-    if (key == LogicalKeyboardKey.digit9) { state.adjustScore(isHome: false, amount: 2); return true; }
-    if (key == LogicalKeyboardKey.digit0) { state.adjustScore(isHome: false, amount: 3); return true; }
+    if (key == LogicalKeyboardKey.digit1) {
+      state.adjustScore(isHome: true, amount: 1);
+      return true;
+    }
+    if (key == LogicalKeyboardKey.digit2) {
+      state.adjustScore(isHome: true, amount: 2);
+      return true;
+    }
+    if (key == LogicalKeyboardKey.digit3) {
+      state.adjustScore(isHome: true, amount: 3);
+      return true;
+    }
+    if (key == LogicalKeyboardKey.digit8) {
+      state.adjustScore(isHome: false, amount: 1);
+      return true;
+    }
+    if (key == LogicalKeyboardKey.digit9) {
+      state.adjustScore(isHome: false, amount: 2);
+      return true;
+    }
+    if (key == LogicalKeyboardKey.digit0) {
+      state.adjustScore(isHome: false, amount: 3);
+      return true;
+    }
     return false;
   }
 
@@ -59,31 +87,30 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
     final state = context.watch<ScoreboardState>();
 
     return Scaffold(
-        backgroundColor: const Color(0xFF1A1A1A),
-        body: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 6.0,
-              ),
-              child: Column(
-                children: [
-                  const Expanded(flex: 5, child: TimerDisplay()),
-                  const SizedBox(height: 4),
-                  const ControlsSection(),
-                  const SizedBox(height: 4),
-                  const TeamsHeader(),
-                  const SizedBox(height: 4),
-                  const Expanded(flex: 5, child: ScoresRow()),
-                  const BottomBar(),
-                ],
-              ),
+      backgroundColor: const Color(0xFF1A1A1A),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 6.0,
             ),
-            const TimeoutOverlay(),
-          ],
-        ),
+            child: Column(
+              children: [
+                const Expanded(flex: 5, child: TimerDisplay()),
+                const SizedBox(height: 4),
+                const ControlsSection(),
+                const SizedBox(height: 4),
+                const TeamsHeader(),
+                const SizedBox(height: 4),
+                const Expanded(flex: 5, child: ScoresRow()),
+                const BottomBar(),
+              ],
+            ),
+          ),
+          const TimeoutOverlay(),
+        ],
+      ),
     );
   }
 }
-

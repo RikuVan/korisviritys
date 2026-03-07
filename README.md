@@ -14,7 +14,9 @@ A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
 - Possession arrow toggle
 - Buzzer sound on clock expiry and manual trigger
 - Undo support (up to 30 actions)
+- Custom halftime duration — pick a preset or enter any time in minutes
 - Team name and color customization
+- Multi-language support (16 languages) — English, Suomi, Svenska, Eesti, Latviešu, Lietuvių, Русский, Deutsch, Español, Français, Italiano, Ελληνικά, Türkçe, Српски, Hrvatski, Slovenščina
 - iOS-style press feedback on all buttons
 - Persistent state — game survives refresh/restart, clock adjusts for time elapsed while closed
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import '../dialogs/reset_dialog.dart';
 import '../dialogs/setup_dialog.dart';
@@ -11,20 +12,21 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
+    final l10n = AppLocalizations.of(context);
 
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: Center(
             child: Text(
-              "VÄLILYÖNTI = kello  |  1/2/3 = koti  |  8/9/0 = vieras",
-              style: TextStyle(color: Colors.grey, fontSize: 12),
+              l10n.shortcutsHint,
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ),
         ),
         _BottomButton(
           icon: Icons.undo,
-          label: "KUMOA",
+          label: l10n.undo,
           color: state.canUndo ? Colors.grey.shade800 : Colors.grey.shade900,
           borderColor: state.canUndo
               ? Colors.grey.shade600
@@ -34,7 +36,7 @@ class BottomBar extends StatelessWidget {
         ),
         _BottomButton(
           icon: Icons.restart_alt,
-          label: "NOLLAA PELI",
+          label: l10n.resetGame,
           color: Colors.grey.shade800,
           borderColor: Colors.grey.shade600,
           textColor: Colors.white,
@@ -42,7 +44,7 @@ class BottomBar extends StatelessWidget {
         ),
         _BottomButton(
           icon: Icons.settings,
-          label: "ASETUKSET",
+          label: l10n.settings,
           color: Colors.grey.shade800,
           borderColor: Colors.grey.shade600,
           textColor: Colors.white,

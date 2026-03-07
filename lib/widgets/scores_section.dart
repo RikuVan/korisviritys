@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'arrow_painter.dart';
 import 'pressable.dart';
@@ -25,9 +26,9 @@ class TeamsHeader extends StatelessWidget {
               border: Border.all(color: Colors.grey.shade800),
             ),
             child: state.possession == Possession.none
-                ? const Text(
-                    "HALLINTA",
-                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                ? Text(
+                    AppLocalizations.of(context).possession,
+                    style: const TextStyle(color: Colors.grey, fontSize: 14),
                   )
                 : CustomPaint(
                     size: const Size(180, 36),

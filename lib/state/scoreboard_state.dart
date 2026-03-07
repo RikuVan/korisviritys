@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../l10n/app_localizations.dart';
 import 'scoreboard_persistence.dart';
 
 enum Possession { none, home, away }
@@ -49,10 +51,13 @@ class ScoreboardState extends ChangeNotifier {
   Possession _possession = Possession.none;
 
   // Team info
-  String _homeTeamName = 'KOTI';
-  String _awayTeamName = 'VIERAS';
+  String _homeTeamName = 'HOME';
+  String _awayTeamName = 'AWAY';
   Color _homeTeamColor = Colors.white;
   Color _awayTeamColor = Colors.white;
+
+  // Locale
+  String _locale = 'en';
 
   // Game clock
   late Ticker _ticker;
@@ -74,7 +79,36 @@ class ScoreboardState extends ChangeNotifier {
     _ticker = Ticker(_onTick);
   }
 
+  String get locale => _locale;
+
+  void setLocale(String locale) {
+    // Update team names if they match the old locale's defaults
+    final oldHome = AppLocalizations.getTranslation(_locale, 'defaultHome');
+    final oldAway = AppLocalizations.getTranslation(_locale, 'defaultAway');
+    final newHome = AppLocalizations.getTranslation(locale, 'defaultHome');
+    final newAway = AppLocalizations.getTranslation(locale, 'defaultAway');
+
+    if (_homeTeamName == oldHome && newHome != null) {
+      _homeTeamName = newHome;
+    }
+    if (_awayTeamName == oldAway && newAway != null) {
+      _awayTeamName = newAway;
+    }
+
+    _locale = locale;
+    notifyListeners();
+    _saveLocale(locale);
+  }
+
+  Future<void> _saveLocale(String locale) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('app_locale', locale);
+  }
+
   Future<void> restore() async {
+    final prefs = await SharedPreferences.getInstance();
+    _locale = prefs.getString('app_locale') ?? 'en';
+
     final saved = await ScoreboardPersistence.load();
     if (saved == null) return;
 
@@ -92,7 +126,9 @@ class ScoreboardState extends ChangeNotifier {
     _initialTime = _timeLeft;
     _accumulatedTime = Duration.zero;
 
-    if (saved.wasRunning && saved.savedAt != null && _timeLeft > Duration.zero) {
+    if (saved.wasRunning &&
+        saved.savedAt != null &&
+        _timeLeft > Duration.zero) {
       final elapsed = DateTime.now().difference(
         DateTime.fromMillisecondsSinceEpoch(saved.savedAt!),
       );
@@ -351,7 +387,7 @@ class ScoreboardState extends ChangeNotifier {
 
   // --- Reset ---
 
-  void resetGame() {
+  void resetGame({String? defaultHomeName, String? defaultAwayName}) {
     stopTimer();
     _undoStack.clear();
     _timeLeft = defaultQuarterLength;
@@ -363,8 +399,8 @@ class ScoreboardState extends ChangeNotifier {
     _awayFouls = 0;
     _period = 1;
     _possession = Possession.none;
-    _homeTeamName = 'KOTI';
-    _awayTeamName = 'VIERAS';
+    _homeTeamName = defaultHomeName ?? 'HOME';
+    _awayTeamName = defaultAwayName ?? 'AWAY';
     _homeTeamColor = Colors.white;
     _awayTeamColor = Colors.white;
     ScoreboardPersistence.clear();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'pressable.dart';
 
@@ -16,9 +17,9 @@ class FoulsPanel extends StatelessWidget {
 
     return Column(
       children: [
-        const Text(
-          "VIRHEET",
-          style: TextStyle(color: Colors.grey, fontSize: 12),
+        Text(
+          AppLocalizations.of(context).fouls,
+          style: const TextStyle(color: Colors.grey, fontSize: 12),
         ),
         const SizedBox(height: 2),
         Expanded(

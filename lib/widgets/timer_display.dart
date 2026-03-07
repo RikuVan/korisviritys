@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'fouls_panel.dart';
 import 'pressable.dart';
@@ -10,6 +11,7 @@ class TimerDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
+    final l10n = AppLocalizations.of(context);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,39 +34,39 @@ class TimerDisplay extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: FittedBox(
-              fit: BoxFit.contain,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _TimerDigit(
-                    value: state.minutes,
-                    onAdjust: (d) => state.adjustTime(minutes: d),
-                    label: "MINUUTIT",
-                    color: Colors.white,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      ":",
-                      style: TextStyle(
-                        fontSize: 100,
-                        color: Colors.white,
-                        fontFamily: 'DSEG7',
-                        height: 1,
+                fit: BoxFit.contain,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _TimerDigit(
+                      value: state.minutes,
+                      onAdjust: (d) => state.adjustTime(minutes: d),
+                      label: l10n.minutesLabel,
+                      color: Colors.white,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text(
+                        ":",
+                        style: TextStyle(
+                          fontSize: 100,
+                          color: Colors.white,
+                          fontFamily: 'DSEG7',
+                          height: 1,
+                        ),
                       ),
                     ),
-                  ),
-                  _TimerDigit(
-                    value: state.seconds,
-                    onAdjust: (d) => state.adjustTime(seconds: d),
-                    label: "SEKUNNIT",
-                    color: Colors.red,
-                  ),
-                ],
+                    _TimerDigit(
+                      value: state.seconds,
+                      onAdjust: (d) => state.adjustTime(seconds: d),
+                      label: l10n.secondsLabel,
+                      color: Colors.red,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
           ),
         ),
         const SizedBox(width: 8),

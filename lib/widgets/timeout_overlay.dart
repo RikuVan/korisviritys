@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'pressable.dart';
 
@@ -41,9 +42,9 @@ class TimeoutOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              const Text(
-                "Paina peruuttaaksesi",
-                style: TextStyle(color: Colors.grey, fontSize: 18),
+              Text(
+                AppLocalizations.of(context).pressToCancel,
+                style: const TextStyle(color: Colors.grey, fontSize: 18),
               ),
             ],
           ),
