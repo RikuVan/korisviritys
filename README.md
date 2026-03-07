@@ -1,6 +1,6 @@
 # Koris Viritys
 
-A virtual basketball scoreboard for macOS and iPad, built with Flutter.
+A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
 
 ![App Screenshot](docs/images/app.png)
 
@@ -16,6 +16,7 @@ A virtual basketball scoreboard for macOS and iPad, built with Flutter.
 - Undo support (up to 30 actions)
 - Team name and color customization
 - iOS-style press feedback on all buttons
+- Persistent state — game survives refresh/restart, clock adjusts for time elapsed while closed
 
 ## Keyboard Shortcuts
 
@@ -30,12 +31,12 @@ A virtual basketball scoreboard for macOS and iPad, built with Flutter.
 ```bash
 make run        # macOS
 make run-ipad   # iPad simulator
+make run-web    # Chrome
 ```
 
 ## Build
 
 ```bash
-make build
+make build      # macOS (copies to /Applications)
+make build-web  # Web (output in build/web, serve with: serve build/web)
 ```
-
-The app bundle will be at `build/macos/Build/Products/Release/korisviritys.app` and is also copied to `/Applications/`.
