@@ -2,8 +2,15 @@
 
 A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
 
-![App Screenshot](docs/images/app.png)
-![Settings Screenshot](docs/images/settings.png)
+**Scoreboard**
+
+<img src="docs/images/app.png" width="600" alt="Scoreboard">
+
+<br>
+
+**Settings**
+
+<img src="docs/images/settings.png" width="600" alt="Settings">
 
 ## Features
 
