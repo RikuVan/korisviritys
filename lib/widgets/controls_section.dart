@@ -1,9 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
+import 'pressable.dart';
 
 class ControlsSection extends StatelessWidget {
   const ControlsSection({super.key});
+
+  void _showTimeoutDialog(BuildContext context, ScoreboardState state) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: Colors.grey.shade900,
+        title: const Text(
+          "AIKALISÄ",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        content: const Text(
+          "Valitse aikalisän pituus:",
+          style: TextStyle(color: Colors.grey),
+        ),
+        actions: [
+          for (final entry in {'30s': 30, '1 min': 60, '2 min': 120}.entries)
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                state.startTimeout("AIKALISÄ", Duration(seconds: entry.value));
+              },
+              child: Text(
+                entry.key,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 
   void _showHalftimeDialog(BuildContext context, ScoreboardState state) {
     showDialog(
@@ -61,7 +92,7 @@ class ControlsSection extends StatelessWidget {
                 ),
               ),
               ...[1, 2].map(
-                (p) => GestureDetector(
+                (p) => Pressable(
                   onTap: () => state.setPeriod(p),
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -88,7 +119,7 @@ class ControlsSection extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
+              Pressable(
                 onTap: () => _showHalftimeDialog(context, state),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -99,8 +130,8 @@ class ControlsSection extends StatelessWidget {
                   height: 30,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.orange.shade900,
-                    border: Border.all(color: Colors.orange.shade600),
+                    color: Colors.grey.shade800,
+                    border: Border.all(color: Colors.grey.shade600),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text(
@@ -114,7 +145,7 @@ class ControlsSection extends StatelessWidget {
                 ),
               ),
               ...[3, 4].map(
-                (p) => GestureDetector(
+                (p) => Pressable(
                   onTap: () => state.setPeriod(p),
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -150,48 +181,11 @@ class ControlsSection extends StatelessWidget {
             Expanded(
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: Column(
-                  children: [
-                    const Text(
-                      "AIKALISÄ",
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
-                    ),
-                    const SizedBox(height: 2),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _ControlButton(
-                          "30s",
-                          Colors.grey.shade800,
-                          () => state.startTimeout(
-                            "AIKALISÄ",
-                            const Duration(seconds: 30),
-                          ),
-                          icon: Icons.timer,
-                        ),
-                        const SizedBox(width: 6),
-                        _ControlButton(
-                          "1min",
-                          Colors.grey.shade800,
-                          () => state.startTimeout(
-                            "AIKALISÄ",
-                            const Duration(minutes: 1),
-                          ),
-                          icon: Icons.timer,
-                        ),
-                        const SizedBox(width: 6),
-                        _ControlButton(
-                          "2min",
-                          Colors.grey.shade800,
-                          () => state.startTimeout(
-                            "AIKALISÄ",
-                            const Duration(minutes: 2),
-                          ),
-                          icon: Icons.timer,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: _ControlButton(
+                  "AIKALISÄ",
+                  Colors.grey.shade800,
+                  () => _showTimeoutDialog(context, state),
+                  icon: Icons.timer,
                 ),
               ),
             ),
@@ -226,7 +220,7 @@ class _ControlButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Pressable(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

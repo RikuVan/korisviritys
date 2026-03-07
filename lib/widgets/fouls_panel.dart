@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
+import 'pressable.dart';
 
 class FoulsPanel extends StatelessWidget {
   final bool isHome;
@@ -25,7 +26,7 @@ class FoulsPanel extends StatelessWidget {
             builder: (context, constraints) {
               final useCompact = constraints.maxHeight < 180;
 
-              return GestureDetector(
+              return Pressable(
                 onTap: () => state.adjustFouls(isHome: isHome, amount: 1),
                 onLongPress: () =>
                     state.adjustFouls(isHome: isHome, amount: -1),

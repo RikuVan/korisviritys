@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
 import 'arrow_painter.dart';
+import 'pressable.dart';
 
 class TeamsHeader extends StatelessWidget {
   const TeamsHeader({super.key});
@@ -13,7 +14,7 @@ class TeamsHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        InkWell(
+        Pressable(
           onTap: state.togglePossession,
           child: Container(
             width: 200,
@@ -136,9 +137,12 @@ class _ScoreDisplay extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: const Icon(Icons.remove, color: Colors.grey),
-                onPressed: () => onAdjust(-1),
+              Pressable(
+                onTap: () => onAdjust(-1),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(Icons.remove, color: Colors.grey),
+                ),
               ),
               const SizedBox(width: 8),
               _ScoreButton(text: "+1", onTap: () => onAdjust(1)),
@@ -162,19 +166,23 @@ class _ScoreButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Pressable(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.green.shade900,
+          color: Colors.grey.shade800,
           borderRadius: BorderRadius.circular(4),
-          border: Border.all(color: Colors.green.shade700),
+          border: Border.all(color: Colors.grey.shade600),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.sports_basketball, color: Colors.orange, size: 14),
+            const Icon(
+              Icons.sports_basketball,
+              color: Colors.white70,
+              size: 14,
+            ),
             const SizedBox(width: 3),
             Text(
               text,

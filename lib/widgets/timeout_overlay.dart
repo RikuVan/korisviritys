@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
+import 'pressable.dart';
 
 class TimeoutOverlay extends StatelessWidget {
   const TimeoutOverlay({super.key});
@@ -13,7 +14,7 @@ class TimeoutOverlay extends StatelessWidget {
     final mins = (state.timeoutSeconds ~/ 60).toString().padLeft(2, '0');
     final secs = (state.timeoutSeconds % 60).toString().padLeft(2, '0');
 
-    return GestureDetector(
+    return Pressable(
       onTap: () => state.cancelTimeout(),
       child: Container(
         color: Colors.black.withValues(alpha: 0.85),

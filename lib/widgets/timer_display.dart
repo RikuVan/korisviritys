@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
 import 'fouls_panel.dart';
+import 'pressable.dart';
 
 class TimerDisplay extends StatelessWidget {
   const TimerDisplay({super.key});
@@ -94,7 +95,7 @@ class _TimerDigit extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
+            Pressable(
               onTap: () => onAdjust(1),
               child: const Icon(
                 Icons.arrow_drop_up,
@@ -103,7 +104,7 @@ class _TimerDigit extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            InkWell(
+            Pressable(
               onTap: () => onAdjust(-1),
               child: const Icon(
                 Icons.arrow_drop_down,

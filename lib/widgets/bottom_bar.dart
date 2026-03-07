@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../state/scoreboard_state.dart';
 import '../dialogs/reset_dialog.dart';
 import '../dialogs/setup_dialog.dart';
+import 'pressable.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({super.key});
@@ -34,16 +35,16 @@ class BottomBar extends StatelessWidget {
         _BottomButton(
           icon: Icons.restart_alt,
           label: "NOLLAA PELI",
-          color: Colors.red.shade900,
-          borderColor: Colors.red.shade700,
+          color: Colors.grey.shade800,
+          borderColor: Colors.grey.shade600,
           textColor: Colors.white,
           onTap: () => showResetDialog(context, state),
         ),
         _BottomButton(
           icon: Icons.settings,
           label: "ASETUKSET",
-          color: Colors.blue.shade900,
-          borderColor: Colors.blue.shade700,
+          color: Colors.grey.shade800,
+          borderColor: Colors.grey.shade600,
           textColor: Colors.white,
           onTap: () => showSetupDialog(context, state),
         ),
@@ -73,7 +74,7 @@ class _BottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: InkWell(
+      child: Pressable(
         onTap: onTap,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
