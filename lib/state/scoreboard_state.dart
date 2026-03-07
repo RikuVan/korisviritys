@@ -363,7 +363,7 @@ class ScoreboardState extends ChangeNotifier {
     _buzzerActive = true;
     notifyListeners();
     await _buzzerPlayer.stop();
-    await _buzzerPlayer.play(AssetSource('sounds/buzzer.mp3'));
+    await _buzzerPlayer.play(AssetSource('sounds/buzzer_4s.wav'));
     Future.delayed(const Duration(milliseconds: 1500), () {
       _buzzerActive = false;
       notifyListeners();
