@@ -16,11 +16,40 @@ class ScoreboardScreen extends StatefulWidget {
 }
 
 class _ScoreboardScreenState extends State<ScoreboardScreen> {
-  final FocusNode _focusNode = FocusNode();
+  late final ScoreboardState _state;
+
+  bool _onKey(KeyEvent event) {
+    if (event is! KeyDownEvent) return false;
+    final key = event.logicalKey;
+    if (key == LogicalKeyboardKey.space) {
+      _state.toggleTimer();
+      return true;
+    }
+    // Home team: 1/2/3, Away team: 8/9/0
+    if (key == LogicalKeyboardKey.digit1) { _state.adjustScore(isHome: true, amount: 1); return true; }
+    if (key == LogicalKeyboardKey.digit2) { _state.adjustScore(isHome: true, amount: 2); return true; }
+    if (key == LogicalKeyboardKey.digit3) { _state.adjustScore(isHome: true, amount: 3); return true; }
+    if (key == LogicalKeyboardKey.digit8) { _state.adjustScore(isHome: false, amount: 1); return true; }
+    if (key == LogicalKeyboardKey.digit9) { _state.adjustScore(isHome: false, amount: 2); return true; }
+    if (key == LogicalKeyboardKey.digit0) { _state.adjustScore(isHome: false, amount: 3); return true; }
+    return false;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _state = context.read<ScoreboardState>();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    HardwareKeyboard.instance.addHandler(_onKey);
+  }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    HardwareKeyboard.instance.removeHandler(_onKey);
     super.dispose();
   }
 
@@ -28,18 +57,7 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
 
-    return Focus(
-      focusNode: _focusNode,
-      autofocus: true,
-      onKeyEvent: (node, event) {
-        if (event is KeyDownEvent &&
-            event.logicalKey == LogicalKeyboardKey.space) {
-          state.toggleTimer();
-          return KeyEventResult.handled;
-        }
-        return KeyEventResult.ignored;
-      },
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: const Color(0xFF1A1A1A),
         body: Stack(
           children: [
@@ -64,7 +82,7 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
             const TimeoutOverlay(),
           ],
         ),
-      ),
     );
   }
 }
+

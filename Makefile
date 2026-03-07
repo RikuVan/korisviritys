@@ -1,8 +1,12 @@
-.PHONY: run build clean test analyze deps
+.PHONY: run run-ipad build clean test analyze deps
 
 # Run the app in debug mode
 run:
 	fvm flutter run -d macos
+
+# Run the app on iPad simulator
+run-ipad:
+	fvm flutter run -d iPad
 
 # Build release macOS app and install to /Applications
 build:

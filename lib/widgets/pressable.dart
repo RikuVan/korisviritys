@@ -37,6 +37,7 @@ class _PressableState extends State<Pressable> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: widget.onTap,
       onLongPress: widget.onLongPress,
       onTapDown: _handleDown,
