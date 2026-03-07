@@ -17,7 +17,7 @@ class BottomBar extends StatelessWidget {
         const Expanded(
           child: Center(
             child: Text(
-              "Paina VÄLILYÖNTIÄ käynnistääksesi/pysäyttääksesi kellon",
+              "Paina kelloa tai VÄLILYÖNTIÄ käynnistääksesi/pysäyttääksesi",
               style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ),

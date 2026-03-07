@@ -17,14 +17,21 @@ class TimerDisplay extends StatelessWidget {
         const FoulsPanel(isHome: true),
         const SizedBox(width: 8),
         Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade800, width: 2),
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: FittedBox(
+          child: Pressable(
+            onTap: () => state.toggleTimer(),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: state.isRunning
+                      ? Colors.green.shade700
+                      : Colors.grey.shade800,
+                  width: 2,
+                ),
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: FittedBox(
               fit: BoxFit.contain,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -57,6 +64,7 @@ class TimerDisplay extends StatelessWidget {
                 ],
               ),
             ),
+          ),
           ),
         ),
         const SizedBox(width: 8),
