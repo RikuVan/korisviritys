@@ -3,6 +3,7 @@
 A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
 
 ![App Screenshot](docs/images/app.png)
+![Settings Screenshot](docs/images/settings.png)
 
 ## Features
 
@@ -22,9 +23,9 @@ A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
 
 ## Keyboard Shortcuts
 
-| Key | Action |
-|-----|--------|
-| Space | Start/stop clock |
+| Key       | Action                 |
+| --------- | ---------------------- |
+| Space     | Start/stop clock       |
 | 1 / 2 / 3 | +1 / +2 / +3 home team |
 | 8 / 9 / 0 | +1 / +2 / +3 away team |
 
