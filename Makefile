@@ -1,4 +1,4 @@
-.PHONY: run run-ipad build clean test analyze deps
+.PHONY: run run-ipad run-web build build-web clean test analyze deps
 
 # Run the app in debug mode
 run:
@@ -8,11 +8,19 @@ run:
 run-ipad:
 	fvm flutter run -d iPad
 
+# Run the app in Chrome
+run-web:
+	fvm flutter run -d chrome
+
 # Build release macOS app and install to /Applications
 build:
 	fvm flutter build macos --release
 	rm -rf /Applications/korisviritys.app
 	cp -R build/macos/Build/Products/Release/korisviritys.app /Applications/
+
+# Build release web app
+build-web:
+	fvm flutter build web --release
 
 # Run tests
 test:
