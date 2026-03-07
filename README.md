@@ -1,6 +1,6 @@
-# Koris Viritys
+# Korisviritys
 
-A virtual basketball scoreboard for macOS, iPad, and web, built with Flutter.
+A virtual basketball scoreboard for macOS, iPad, and web.
 
 **Scoreboard**
 
