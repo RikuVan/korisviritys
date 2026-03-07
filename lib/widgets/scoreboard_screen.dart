@@ -28,14 +28,16 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
 
-    return KeyboardListener(
+    return Focus(
       focusNode: _focusNode,
       autofocus: true,
-      onKeyEvent: (event) {
+      onKeyEvent: (node, event) {
         if (event is KeyDownEvent &&
             event.logicalKey == LogicalKeyboardKey.space) {
           state.toggleTimer();
+          return KeyEventResult.handled;
         }
+        return KeyEventResult.ignored;
       },
       child: Scaffold(
         backgroundColor: const Color(0xFF1A1A1A),
