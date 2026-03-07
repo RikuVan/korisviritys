@@ -2,28 +2,30 @@
 
 # Run the app in debug mode
 run:
-	flutter run -d macos
+	fvm flutter run -d macos
 
-# Build release macOS app
+# Build release macOS app and install to /Applications
 build:
-	flutter build macos --release
+	fvm flutter build macos --release
+	rm -rf /Applications/korisviritys.app
+	cp -R build/macos/Build/Products/Release/korisviritys.app /Applications/
 
 # Run tests
 test:
-	flutter test
+	fvm flutter test
 
 # Run Dart analyzer
 analyze:
-	flutter analyze
+	fvm flutter analyze
 
 # Install dependencies
 deps:
-	flutter pub get
+	fvm flutter pub get
 
 # Clean build artifacts
 clean:
-	flutter clean
+	fvm flutter clean
 
 # Format code
 format:
-	dart format lib test
+	fvm dart format lib test

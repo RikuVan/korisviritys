@@ -28,4 +28,4 @@ flutter run -d macos
 flutter build macos --release
 ```
 
-The app bundle will be at `build/macos/Build/Products/Release/koris_viritys.app`.
+The app bundle will be at `build/macos/Build/Products/Release/korisviritys.app`.
