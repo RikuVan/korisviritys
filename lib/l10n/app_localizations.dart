@@ -63,6 +63,10 @@ class AppLocalizations {
 
   String get running => _t('running');
   String get paused => _t('paused');
+  String get minutesUp => _t('minutesUp');
+  String get minutesDown => _t('minutesDown');
+  String get secondsUp => _t('secondsUp');
+  String get secondsDown => _t('secondsDown');
 
   // Scores
   String get possession => _t('possession');
@@ -107,6 +111,10 @@ class AppLocalizations {
       'language': 'Language',
       'running': 'RUNNING',
       'paused': 'PAUSED \u2014 SPACE TO START',
+      'minutesUp': 'Add one minute',
+      'minutesDown': 'Subtract one minute',
+      'secondsUp': 'Add one second',
+      'secondsDown': 'Subtract one second',
       'possession': 'POSSESSION',
       'shortcutsHint': 'SPACE = clock  |  1/2/3 = home  |  8/9/0 = away',
       'undo': 'UNDO',
@@ -139,6 +147,10 @@ class AppLocalizations {
       'language': 'Kieli',
       'running': 'K\u00C4YNNISS\u00C4',
       'paused': 'TAUOLLA \u2014 V\u00C4LILY\u00D6NTI ALOITTAA',
+      'minutesUp': 'Lis\u00e4\u00e4 minuutti',
+      'minutesDown': 'V\u00e4henn\u00e4 minuutti',
+      'secondsUp': 'Lis\u00e4\u00e4 sekunti',
+      'secondsDown': 'V\u00e4henn\u00e4 sekunti',
       'possession': 'HALLINTA',
       'shortcutsHint':
           'V\u00C4LILY\u00D6NTI = kello  |  1/2/3 = koti  |  8/9/0 = vieras',
@@ -172,6 +184,10 @@ class AppLocalizations {
       'language': 'Spr\u00E5k',
       'running': 'P\u00c5G\u00c5R',
       'paused': 'PAUSAD \u2014 MELLANSLAG STARTAR',
+      'minutesUp': 'L\u00e4gg till en minut',
+      'minutesDown': 'Ta bort en minut',
+      'secondsUp': 'L\u00e4gg till en sekund',
+      'secondsDown': 'Ta bort en sekund',
       'possession': 'BOLLINNEHAV',
       'shortcutsHint':
           'MELLANSLAG = klocka  |  1/2/3 = hemma  |  8/9/0 = borta',
@@ -205,6 +221,10 @@ class AppLocalizations {
       'language': 'Keel',
       'running': 'K\u00c4IB',
       'paused': 'PEATATUD \u2014 T\u00dcHIK ALUSTAB',
+      'minutesUp': 'Lisa \u00fcks minut',
+      'minutesDown': 'Eemalda \u00fcks minut',
+      'secondsUp': 'Lisa \u00fcks sekund',
+      'secondsDown': 'Eemalda \u00fcks sekund',
       'possession': 'PALLVALDUS',
       'shortcutsHint':
           'T\u00DCHIK = kell  |  1/2/3 = kodu  |  8/9/0 = k\u00FClalised',
@@ -238,6 +258,10 @@ class AppLocalizations {
       'language': 'Valoda',
       'running': 'DARBOJAS',
       'paused': 'PAUZ\u0112TS \u2014 ATSTARPE S\u0100K',
+      'minutesUp': 'Pievienot vienu min\u016bti',
+      'minutesDown': 'No\u0146emt vienu min\u016bti',
+      'secondsUp': 'Pievienot vienu sekundi',
+      'secondsDown': 'No\u0146emt vienu sekundi',
       'possession': 'BUMBA',
       'shortcutsHint':
           'ATSTARPE = pulkstenis  |  1/2/3 = m\u0101jas  |  8/9/0 = viesi',
@@ -272,6 +296,10 @@ class AppLocalizations {
       'language': 'Kalba',
       'running': 'VEIKIA',
       'paused': 'PAUZ\u0116 \u2014 TARPAS PALEID\u017dIA',
+      'minutesUp': 'Prid\u0117ti vien\u0105 minut\u0119',
+      'minutesDown': 'Atimti vien\u0105 minut\u0119',
+      'secondsUp': 'Prid\u0117ti vien\u0105 sekund\u0119',
+      'secondsDown': 'Atimti vien\u0105 sekund\u0119',
       'possession': 'KAMUOLIO VALDYMAS',
       'shortcutsHint':
           'TARPAS = laikrodis  |  1/2/3 = namai  |  8/9/0 = sve\u010Diai',
@@ -310,6 +338,10 @@ class AppLocalizations {
       'language': '\u042F\u0437\u044B\u043A',
       'running': '\u0418\u0414\u0401\u0422',
       'paused': '\u041f\u0410\u0423\u0417\u0410 \u2014 \u041f\u0420\u041e\u0411\u0415\u041b \u0414\u041b\u042f \u0421\u0422\u0410\u0420\u0422\u0410',
+      'minutesUp': '\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043c\u0438\u043d\u0443\u0442\u0443',
+      'minutesDown': '\u0423\u0431\u0430\u0432\u0438\u0442\u044c \u043c\u0438\u043d\u0443\u0442\u0443',
+      'secondsUp': '\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0435\u043a\u0443\u043d\u0434\u0443',
+      'secondsDown': '\u0423\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0435\u043a\u0443\u043d\u0434\u0443',
       'possession': '\u0412\u041B\u0410\u0414\u0415\u041D\u0418\u0415',
       'shortcutsHint':
           '\u041F\u0420\u041E\u0411\u0415\u041B = \u0447\u0430\u0441\u044B  |  1/2/3 = \u0434\u043E\u043C  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -344,6 +376,10 @@ class AppLocalizations {
       'language': 'Sprache',
       'running': 'L\u00c4UFT',
       'paused': 'PAUSIERT \u2014 LEERTASTE STARTET',
+      'minutesUp': 'Eine Minute hinzuf\u00fcgen',
+      'minutesDown': 'Eine Minute abziehen',
+      'secondsUp': 'Eine Sekunde hinzuf\u00fcgen',
+      'secondsDown': 'Eine Sekunde abziehen',
       'possession': 'BALLBESITZ',
       'shortcutsHint': 'LEERTASTE = Uhr  |  1/2/3 = Heim  |  8/9/0 = Gast',
       'undo': 'R\u00DCCKG\u00C4NGIG',
@@ -376,6 +412,10 @@ class AppLocalizations {
       'language': 'Idioma',
       'running': 'EN MARCHA',
       'paused': 'EN PAUSA \u2014 ESPACIO PARA INICIAR',
+      'minutesUp': 'A\u00f1adir un minuto',
+      'minutesDown': 'Restar un minuto',
+      'secondsUp': 'A\u00f1adir un segundo',
+      'secondsDown': 'Restar un segundo',
       'possession': 'POSESI\u00D3N',
       'shortcutsHint':
           'ESPACIO = reloj  |  1/2/3 = local  |  8/9/0 = visitante',
@@ -409,6 +449,10 @@ class AppLocalizations {
       'language': 'Langue',
       'running': 'EN COURS',
       'paused': 'EN PAUSE \u2014 ESPACE POUR D\u00c9MARRER',
+      'minutesUp': 'Ajouter une minute',
+      'minutesDown': 'Retirer une minute',
+      'secondsUp': 'Ajouter une seconde',
+      'secondsDown': 'Retirer une seconde',
       'possession': 'POSSESSION',
       'shortcutsHint':
           'ESPACE = horloge  |  1/2/3 = domicile  |  8/9/0 = ext\u00E9rieur',
@@ -442,6 +486,10 @@ class AppLocalizations {
       'language': 'Lingua',
       'running': 'IN CORSO',
       'paused': 'IN PAUSA \u2014 SPAZIO PER AVVIARE',
+      'minutesUp': 'Aggiungi un minuto',
+      'minutesDown': 'Togli un minuto',
+      'secondsUp': 'Aggiungi un secondo',
+      'secondsDown': 'Togli un secondo',
       'possession': 'POSSESSO',
       'shortcutsHint': 'SPAZIO = orologio  |  1/2/3 = casa  |  8/9/0 = ospite',
       'undo': 'ANNULLA',
@@ -479,6 +527,10 @@ class AppLocalizations {
       'language': '\u0393\u03BB\u03CE\u03C3\u03C3\u03B1',
       'running': '\u03a3\u0395 \u0395\u039e\u0395\u039b\u0399\u039e\u0397',
       'paused': '\u03a0\u0391\u03a5\u03a3\u0397 \u2014 SPACE \u0393\u0399\u0391 \u0395\u039a\u039a\u0399\u039d\u0397\u03a3\u0397',
+      'minutesUp': '\u03a0\u03c1\u03bf\u03c3\u03b8\u03ae\u03ba\u03b7 \u03b5\u03bd\u03cc\u03c2 \u03bb\u03b5\u03c0\u03c4\u03bf\u03cd',
+      'minutesDown': '\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7 \u03b5\u03bd\u03cc\u03c2 \u03bb\u03b5\u03c0\u03c4\u03bf\u03cd',
+      'secondsUp': '\u03a0\u03c1\u03bf\u03c3\u03b8\u03ae\u03ba\u03b7 \u03b5\u03bd\u03cc\u03c2 \u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03bf\u03bb\u03ad\u03c0\u03c4\u03bf\u03c5',
+      'secondsDown': '\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7 \u03b5\u03bd\u03cc\u03c2 \u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03bf\u03bb\u03ad\u03c0\u03c4\u03bf\u03c5',
       'possession': '\u039A\u0391\u03A4\u039F\u03A7\u0397',
       'shortcutsHint':
           'SPACE = \u03C1\u03BF\u03BB\u03CC\u03B9  |  1/2/3 = \u03B3\u03B7\u03C0\u03B5\u03B4.  |  8/9/0 = \u03C6\u03B9\u03BB\u03BF\u03BE.',
@@ -513,6 +565,10 @@ class AppLocalizations {
       'language': 'Dil',
       'running': '\u00c7ALI\u015eIYOR',
       'paused': 'DURAKLADI \u2014 BA\u015eLATMAK \u0130\u00c7\u0130N BO\u015eLUK',
+      'minutesUp': 'Bir dakika ekle',
+      'minutesDown': 'Bir dakika \u00e7\u0131kar',
+      'secondsUp': 'Bir saniye ekle',
+      'secondsDown': 'Bir saniye \u00e7\u0131kar',
       'possession': 'TOP KONTROL\u00DC',
       'shortcutsHint':
           'BO\u015ELUK = saat  |  1/2/3 = ev  |  8/9/0 = deplasman',
@@ -550,6 +606,10 @@ class AppLocalizations {
       'language': '\u0408\u0435\u0437\u0438\u043A',
       'running': '\u0422\u0415\u0427\u0415',
       'paused': '\u041f\u0410\u0423\u0417\u0410 \u2014 \u0420\u0410\u0417\u041c\u0410\u041a \u0417\u0410 \u0421\u0422\u0410\u0420\u0422',
+      'minutesUp': '\u0414\u043e\u0434\u0430\u0458 \u043c\u0438\u043d\u0443\u0442',
+      'minutesDown': '\u041e\u0434\u0443\u0437\u043c\u0438 \u043c\u0438\u043d\u0443\u0442',
+      'secondsUp': '\u0414\u043e\u0434\u0430\u0458 \u0441\u0435\u043a\u0443\u043d\u0434\u0443',
+      'secondsDown': '\u041e\u0434\u0443\u0437\u043c\u0438 \u0441\u0435\u043a\u0443\u043d\u0434\u0443',
       'possession': '\u041F\u041E\u0421\u0415\u0414',
       'shortcutsHint':
           '\u0420\u0410\u0417\u041C\u0410\u041A = \u0441\u0430\u0442  |  1/2/3 = \u0434\u043E\u043C\u0430\u045B\u0438  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -585,6 +645,10 @@ class AppLocalizations {
       'language': 'Jezik',
       'running': 'TE\u010cE',
       'paused': 'PAUZIRANO \u2014 RAZMAK ZA PO\u010cETAK',
+      'minutesUp': 'Dodaj minutu',
+      'minutesDown': 'Oduzmi minutu',
+      'secondsUp': 'Dodaj sekundu',
+      'secondsDown': 'Oduzmi sekundu',
       'possession': 'POSJED',
       'shortcutsHint': 'RAZMAK = sat  |  1/2/3 = doma\u0107i  |  8/9/0 = gosti',
       'undo': 'PONI\u0160TI',
@@ -617,6 +681,10 @@ class AppLocalizations {
       'language': 'Jezik',
       'running': 'TE\u010cE',
       'paused': 'ZAUSTAVLJENO \u2014 PRESLEDEK ZA ZA\u010cETEK',
+      'minutesUp': 'Dodaj minuto',
+      'minutesDown': 'Od\u0161tej minuto',
+      'secondsUp': 'Dodaj sekundo',
+      'secondsDown': 'Od\u0161tej sekundo',
       'possession': 'POSEST',
       'shortcutsHint':
           'PRESLEDEK = ura  |  1/2/3 = doma\u010Di  |  8/9/0 = gostje',

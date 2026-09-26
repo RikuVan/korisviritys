@@ -16,6 +16,7 @@ class TimerDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ScoreboardState>();
+    final l10n = AppLocalizations.of(context);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,6 +90,8 @@ class TimerDisplay extends StatelessWidget {
                       child: _Stepper(
                         onUp: () => state.adjustTime(minutes: 1),
                         onDown: () => state.adjustTime(minutes: -1),
+                        upLabel: l10n.minutesUp,
+                        downLabel: l10n.minutesDown,
                       ),
                     ),
                   ),
@@ -100,6 +103,8 @@ class TimerDisplay extends StatelessWidget {
                       child: _Stepper(
                         onUp: () => state.adjustTime(seconds: 1),
                         onDown: () => state.adjustTime(seconds: -1),
+                        upLabel: l10n.secondsUp,
+                        downLabel: l10n.secondsDown,
                       ),
                     ),
                   ),
@@ -143,8 +148,15 @@ class _RunLabel extends StatelessWidget {
 class _Stepper extends StatelessWidget {
   final VoidCallback onUp;
   final VoidCallback onDown;
+  final String upLabel;
+  final String downLabel;
 
-  const _Stepper({required this.onUp, required this.onDown});
+  const _Stepper({
+    required this.onUp,
+    required this.onDown,
+    required this.upLabel,
+    required this.downLabel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -152,9 +164,17 @@ class _Stepper extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        _StepperButton(icon: Icons.keyboard_arrow_up, onTap: onUp),
+        _StepperButton(
+          icon: Icons.keyboard_arrow_up,
+          onTap: onUp,
+          label: upLabel,
+        ),
         const SizedBox(height: 10),
-        _StepperButton(icon: Icons.keyboard_arrow_down, onTap: onDown),
+        _StepperButton(
+          icon: Icons.keyboard_arrow_down,
+          onTap: onDown,
+          label: downLabel,
+        ),
       ],
     );
   }
@@ -163,22 +183,31 @@ class _Stepper extends StatelessWidget {
 class _StepperButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
+  final String label;
 
-  const _StepperButton({required this.icon, required this.onTap});
+  const _StepperButton({
+    required this.icon,
+    required this.onTap,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Pressable(
-      onTap: onTap,
-      child: Container(
-        width: 44,
-        height: 44,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: _stepperColor),
+    return Semantics(
+      button: true,
+      label: label,
+      child: Pressable(
+        onTap: onTap,
+        child: Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: _stepperColor),
+          ),
+          child: Icon(icon, color: Colors.grey.shade300, size: 24),
         ),
-        child: Icon(icon, color: Colors.grey.shade300, size: 24),
       ),
     );
   }
