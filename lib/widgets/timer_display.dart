@@ -4,6 +4,11 @@ import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'fouls_panel.dart';
 import 'pressable.dart';
+import 'seg_display.dart';
+
+/// Bright red used for the seconds so they read at a glance.
+const Color _secondsColor = Color(0xFFFF0000);
+const Color _stepperColor = Color(0xFF264997);
 
 class TimerDisplay extends StatelessWidget {
   const TimerDisplay({super.key});
@@ -17,12 +22,12 @@ class TimerDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const FoulsPanel(isHome: true),
-        const SizedBox(width: 8),
+        const SizedBox(width: 12),
         Expanded(
           child: Pressable(
             onTap: () => state.toggleTimer(),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: state.isRunning
@@ -33,99 +38,177 @@ class TimerDisplay extends StatelessWidget {
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _TimerDigit(
-                      value: state.minutes,
-                      onAdjust: (d) => state.adjustTime(minutes: d),
-                      label: l10n.minutesLabel,
-                      color: Colors.white,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text(
-                        ":",
-                        style: TextStyle(
-                          fontSize: 100,
-                          color: Colors.white,
-                          fontFamily: 'DSEG7',
-                          height: 1,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Time fills the black background (bounded box → scales up)
+                  // and is centered; gutters keep it clear of the steppers.
+                  Positioned.fill(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SegDisplay(
+                              text: state.minutes.toString().padLeft(2, '0'),
+                              color: Colors.white,
+                              fontSize: 120,
+                              letterSpacing: 2,
+                              ghostOpacity: 0.06,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                ":",
+                                style: TextStyle(
+                                  fontSize: 120,
+                                  color: Colors.white,
+                                  fontFamily: 'DSEG7',
+                                  height: 1,
+                                ),
+                              ),
+                            ),
+                            SegDisplay(
+                              text: state.seconds.toString().padLeft(2, '0'),
+                              color: _secondsColor,
+                              fontSize: 120,
+                              letterSpacing: 2,
+                              ghostOpacity: 0.12,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    _TimerDigit(
-                      value: state.seconds,
-                      onAdjust: (d) => state.adjustTime(seconds: d),
-                      label: l10n.secondsLabel,
-                      color: Colors.red,
+                  ),
+                  Positioned(
+                    left: 8,
+                    top: 0,
+                    bottom: 0,
+                    child: Center(
+                      child: _Stepper(
+                        onUp: () => state.adjustTime(minutes: 1),
+                        onDown: () => state.adjustTime(minutes: -1),
+                        upLabel: l10n.minutesUp,
+                        downLabel: l10n.minutesDown,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    right: 8,
+                    top: 0,
+                    bottom: 0,
+                    child: Center(
+                      child: _Stepper(
+                        onUp: () => state.adjustTime(seconds: 1),
+                        onDown: () => state.adjustTime(seconds: -1),
+                        upLabel: l10n.secondsUp,
+                        downLabel: l10n.secondsDown,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 4,
+                    child: _RunLabel(isRunning: state.isRunning),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 12),
         const FoulsPanel(isHome: false),
       ],
     );
   }
 }
 
-class _TimerDigit extends StatelessWidget {
-  final int value;
-  final Function(int) onAdjust;
-  final String label;
-  final Color color;
+class _RunLabel extends StatelessWidget {
+  final bool isRunning;
 
-  const _TimerDigit({
-    required this.value,
-    required this.onAdjust,
-    required this.label,
-    required this.color,
+  const _RunLabel({required this.isRunning});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Text(
+      isRunning ? '\u25CF ${l10n.running}' : '\u275A\u275A ${l10n.paused}',
+      style: TextStyle(
+        color: isRunning ? Colors.green.shade400 : Colors.grey,
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.8,
+      ),
+    );
+  }
+}
+
+class _Stepper extends StatelessWidget {
+  final VoidCallback onUp;
+  final VoidCallback onDown;
+  final String upLabel;
+  final String downLabel;
+
+  const _Stepper({
+    required this.onUp,
+    required this.onDown,
+    required this.upLabel,
+    required this.downLabel,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          value.toString().padLeft(2, '0'),
-          style: TextStyle(
-            fontSize: 100,
-            color: color,
-            fontFamily: 'DSEG7',
-            letterSpacing: 2,
-          ),
+        _StepperButton(
+          icon: Icons.keyboard_arrow_up,
+          onTap: onUp,
+          label: upLabel,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Pressable(
-              onTap: () => onAdjust(1),
-              child: const Icon(
-                Icons.arrow_drop_up,
-                color: Colors.grey,
-                size: 24,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Pressable(
-              onTap: () => onAdjust(-1),
-              child: const Icon(
-                Icons.arrow_drop_down,
-                color: Colors.grey,
-                size: 24,
-              ),
-            ),
-          ],
+        const SizedBox(height: 10),
+        _StepperButton(
+          icon: Icons.keyboard_arrow_down,
+          onTap: onDown,
+          label: downLabel,
         ),
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 10)),
       ],
+    );
+  }
+}
+
+class _StepperButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+  final String label;
+
+  const _StepperButton({
+    required this.icon,
+    required this.onTap,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: label,
+      child: Pressable(
+        onTap: onTap,
+        child: Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: _stepperColor),
+          ),
+          child: Icon(icon, color: Colors.grey.shade300, size: 24),
+        ),
+      ),
     );
   }
 }

@@ -95,7 +95,7 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
             ),
             child: Column(
               children: [
-                const Expanded(flex: 5, child: TimerDisplay()),
+                const Expanded(flex: 7, child: TimerDisplay()),
                 const SizedBox(height: 4),
                 const ControlsSection(),
                 const SizedBox(height: 4),
