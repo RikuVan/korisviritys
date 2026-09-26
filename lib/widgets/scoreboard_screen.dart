@@ -84,8 +84,6 @@ class _ScoreboardScreenState extends State<ScoreboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<ScoreboardState>();
-
     return Scaffold(
       backgroundColor: const Color(0xFF1A1A1A),
       body: Stack(
