@@ -4,6 +4,7 @@ import '../l10n/app_localizations.dart';
 import '../state/scoreboard_state.dart';
 import 'arrow_painter.dart';
 import 'pressable.dart';
+import 'seg_display.dart';
 
 class TeamsHeader extends StatelessWidget {
   const TeamsHeader({super.key});
@@ -123,14 +124,15 @@ class _ScoreDisplay extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Text(
-                score.toString().padLeft(2, '0'),
-                style: const TextStyle(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: SegDisplay(
+                  text: score.toString().padLeft(2, '0'),
+                  color: const Color(0xFF00FF00),
                   fontSize: 140,
-                  color: Color(0xFF00FF00),
-                  fontFamily: 'DSEG7',
+                  ghostOpacity: 0.08,
                 ),
               ),
             ),

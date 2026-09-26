@@ -61,9 +61,8 @@ class AppLocalizations {
   String get save => _t('save');
   String get language => _t('language');
 
-  // Timer
-  String get minutesLabel => _t('minutesLabel');
-  String get secondsLabel => _t('secondsLabel');
+  String get running => _t('running');
+  String get paused => _t('paused');
 
   // Scores
   String get possession => _t('possession');
@@ -106,8 +105,8 @@ class AppLocalizations {
       'cancel': 'CANCEL',
       'save': 'SAVE',
       'language': 'Language',
-      'minutesLabel': 'MINUTES',
-      'secondsLabel': 'SECONDS',
+      'running': 'RUNNING',
+      'paused': 'PAUSED \u2014 SPACE TO START',
       'possession': 'POSSESSION',
       'shortcutsHint': 'SPACE = clock  |  1/2/3 = home  |  8/9/0 = away',
       'undo': 'UNDO',
@@ -138,8 +137,8 @@ class AppLocalizations {
       'cancel': 'PERUUTA',
       'save': 'TALLENNA',
       'language': 'Kieli',
-      'minutesLabel': 'MINUUTIT',
-      'secondsLabel': 'SEKUNNIT',
+      'running': 'K\u00C4YNNISS\u00C4',
+      'paused': 'TAUOLLA \u2014 V\u00C4LILY\u00D6NTI ALOITTAA',
       'possession': 'HALLINTA',
       'shortcutsHint':
           'V\u00C4LILY\u00D6NTI = kello  |  1/2/3 = koti  |  8/9/0 = vieras',
@@ -171,8 +170,6 @@ class AppLocalizations {
       'cancel': 'AVBRYT',
       'save': 'SPARA',
       'language': 'Spr\u00E5k',
-      'minutesLabel': 'MINUTER',
-      'secondsLabel': 'SEKUNDER',
       'possession': 'BOLLINNEHAV',
       'shortcutsHint':
           'MELLANSLAG = klocka  |  1/2/3 = hemma  |  8/9/0 = borta',
@@ -204,8 +201,6 @@ class AppLocalizations {
       'cancel': 'T\u00DCHISTA',
       'save': 'SALVESTA',
       'language': 'Keel',
-      'minutesLabel': 'MINUTID',
-      'secondsLabel': 'SEKUNDID',
       'possession': 'PALLVALDUS',
       'shortcutsHint':
           'T\u00DCHIK = kell  |  1/2/3 = kodu  |  8/9/0 = k\u00FClalised',
@@ -237,8 +232,6 @@ class AppLocalizations {
       'cancel': 'ATCELT',
       'save': 'SAGLAB\u0100T',
       'language': 'Valoda',
-      'minutesLabel': 'MIN\u016ATES',
-      'secondsLabel': 'SEKUNDES',
       'possession': 'BUMBA',
       'shortcutsHint':
           'ATSTARPE = pulkstenis  |  1/2/3 = m\u0101jas  |  8/9/0 = viesi',
@@ -271,8 +264,6 @@ class AppLocalizations {
       'cancel': 'AT\u0160AUKTI',
       'save': 'I\u0160SAUGOTI',
       'language': 'Kalba',
-      'minutesLabel': 'MINUT\u0116S',
-      'secondsLabel': 'SEKUND\u0116S',
       'possession': 'KAMUOLIO VALDYMAS',
       'shortcutsHint':
           'TARPAS = laikrodis  |  1/2/3 = namai  |  8/9/0 = sve\u010Diai',
@@ -309,8 +300,6 @@ class AppLocalizations {
       'cancel': '\u041E\u0422\u041C\u0415\u041D\u0410',
       'save': '\u0421\u041E\u0425\u0420\u0410\u041D\u0418\u0422\u042C',
       'language': '\u042F\u0437\u044B\u043A',
-      'minutesLabel': '\u041C\u0418\u041D\u0423\u0422\u042B',
-      'secondsLabel': '\u0421\u0415\u041A\u0423\u041D\u0414\u042B',
       'possession': '\u0412\u041B\u0410\u0414\u0415\u041D\u0418\u0415',
       'shortcutsHint':
           '\u041F\u0420\u041E\u0411\u0415\u041B = \u0447\u0430\u0441\u044B  |  1/2/3 = \u0434\u043E\u043C  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -343,8 +332,6 @@ class AppLocalizations {
       'cancel': 'ABBRECHEN',
       'save': 'SPEICHERN',
       'language': 'Sprache',
-      'minutesLabel': 'MINUTEN',
-      'secondsLabel': 'SEKUNDEN',
       'possession': 'BALLBESITZ',
       'shortcutsHint': 'LEERTASTE = Uhr  |  1/2/3 = Heim  |  8/9/0 = Gast',
       'undo': 'R\u00DCCKG\u00C4NGIG',
@@ -375,8 +362,6 @@ class AppLocalizations {
       'cancel': 'CANCELAR',
       'save': 'GUARDAR',
       'language': 'Idioma',
-      'minutesLabel': 'MINUTOS',
-      'secondsLabel': 'SEGUNDOS',
       'possession': 'POSESI\u00D3N',
       'shortcutsHint':
           'ESPACIO = reloj  |  1/2/3 = local  |  8/9/0 = visitante',
@@ -408,8 +393,6 @@ class AppLocalizations {
       'cancel': 'ANNULER',
       'save': 'SAUVEGARDER',
       'language': 'Langue',
-      'minutesLabel': 'MINUTES',
-      'secondsLabel': 'SECONDES',
       'possession': 'POSSESSION',
       'shortcutsHint':
           'ESPACE = horloge  |  1/2/3 = domicile  |  8/9/0 = ext\u00E9rieur',
@@ -441,8 +424,6 @@ class AppLocalizations {
       'cancel': 'ANNULLA',
       'save': 'SALVA',
       'language': 'Lingua',
-      'minutesLabel': 'MINUTI',
-      'secondsLabel': 'SECONDI',
       'possession': 'POSSESSO',
       'shortcutsHint': 'SPAZIO = orologio  |  1/2/3 = casa  |  8/9/0 = ospite',
       'undo': 'ANNULLA',
@@ -478,9 +459,6 @@ class AppLocalizations {
       'cancel': '\u0391\u039A\u03A5\u03A1\u03A9\u03A3\u0397',
       'save': '\u0391\u03A0\u039F\u0398\u0397\u039A\u0395\u03A5\u03A3\u0397',
       'language': '\u0393\u03BB\u03CE\u03C3\u03C3\u03B1',
-      'minutesLabel': '\u039B\u0395\u03A0\u03A4\u0391',
-      'secondsLabel':
-          '\u0394\u0395\u03A5\u03A4\u0395\u03A1\u039F\u039B\u0395\u03A0\u03A4\u0391',
       'possession': '\u039A\u0391\u03A4\u039F\u03A7\u0397',
       'shortcutsHint':
           'SPACE = \u03C1\u03BF\u03BB\u03CC\u03B9  |  1/2/3 = \u03B3\u03B7\u03C0\u03B5\u03B4.  |  8/9/0 = \u03C6\u03B9\u03BB\u03BF\u03BE.',
@@ -513,8 +491,6 @@ class AppLocalizations {
       'cancel': '\u0130PTAL',
       'save': 'KAYDET',
       'language': 'Dil',
-      'minutesLabel': 'DAK\u0130KA',
-      'secondsLabel': 'SAN\u0130YE',
       'possession': 'TOP KONTROL\u00DC',
       'shortcutsHint':
           'BO\u015ELUK = saat  |  1/2/3 = ev  |  8/9/0 = deplasman',
@@ -550,8 +526,6 @@ class AppLocalizations {
       'cancel': '\u041E\u0422\u041A\u0410\u0416\u0418',
       'save': '\u0421\u0410\u0427\u0423\u0412\u0410\u0408',
       'language': '\u0408\u0435\u0437\u0438\u043A',
-      'minutesLabel': '\u041C\u0418\u041D\u0423\u0422\u0418',
-      'secondsLabel': '\u0421\u0415\u041A\u0423\u041D\u0414\u0415',
       'possession': '\u041F\u041E\u0421\u0415\u0414',
       'shortcutsHint':
           '\u0420\u0410\u0417\u041C\u0410\u041A = \u0441\u0430\u0442  |  1/2/3 = \u0434\u043E\u043C\u0430\u045B\u0438  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -585,8 +559,6 @@ class AppLocalizations {
       'cancel': 'ODUSTANI',
       'save': 'SPREMI',
       'language': 'Jezik',
-      'minutesLabel': 'MINUTE',
-      'secondsLabel': 'SEKUNDE',
       'possession': 'POSJED',
       'shortcutsHint': 'RAZMAK = sat  |  1/2/3 = doma\u0107i  |  8/9/0 = gosti',
       'undo': 'PONI\u0160TI',
@@ -617,8 +589,6 @@ class AppLocalizations {
       'cancel': 'PREKLI\u010CI',
       'save': 'SHRANI',
       'language': 'Jezik',
-      'minutesLabel': 'MINUTE',
-      'secondsLabel': 'SEKUNDE',
       'possession': 'POSEST',
       'shortcutsHint':
           'PRESLEDEK = ura  |  1/2/3 = doma\u010Di  |  8/9/0 = gostje',
