@@ -170,6 +170,8 @@ class AppLocalizations {
       'cancel': 'AVBRYT',
       'save': 'SPARA',
       'language': 'Spr\u00E5k',
+      'running': 'P\u00c5G\u00c5R',
+      'paused': 'PAUSAD \u2014 MELLANSLAG STARTAR',
       'possession': 'BOLLINNEHAV',
       'shortcutsHint':
           'MELLANSLAG = klocka  |  1/2/3 = hemma  |  8/9/0 = borta',
@@ -201,6 +203,8 @@ class AppLocalizations {
       'cancel': 'T\u00DCHISTA',
       'save': 'SALVESTA',
       'language': 'Keel',
+      'running': 'K\u00c4IB',
+      'paused': 'PEATATUD \u2014 T\u00dcHIK ALUSTAB',
       'possession': 'PALLVALDUS',
       'shortcutsHint':
           'T\u00DCHIK = kell  |  1/2/3 = kodu  |  8/9/0 = k\u00FClalised',
@@ -232,6 +236,8 @@ class AppLocalizations {
       'cancel': 'ATCELT',
       'save': 'SAGLAB\u0100T',
       'language': 'Valoda',
+      'running': 'DARBOJAS',
+      'paused': 'PAUZ\u0112TS \u2014 ATSTARPE S\u0100K',
       'possession': 'BUMBA',
       'shortcutsHint':
           'ATSTARPE = pulkstenis  |  1/2/3 = m\u0101jas  |  8/9/0 = viesi',
@@ -264,6 +270,8 @@ class AppLocalizations {
       'cancel': 'AT\u0160AUKTI',
       'save': 'I\u0160SAUGOTI',
       'language': 'Kalba',
+      'running': 'VEIKIA',
+      'paused': 'PAUZ\u0116 \u2014 TARPAS PALEID\u017dIA',
       'possession': 'KAMUOLIO VALDYMAS',
       'shortcutsHint':
           'TARPAS = laikrodis  |  1/2/3 = namai  |  8/9/0 = sve\u010Diai',
@@ -300,6 +308,8 @@ class AppLocalizations {
       'cancel': '\u041E\u0422\u041C\u0415\u041D\u0410',
       'save': '\u0421\u041E\u0425\u0420\u0410\u041D\u0418\u0422\u042C',
       'language': '\u042F\u0437\u044B\u043A',
+      'running': '\u0418\u0414\u0401\u0422',
+      'paused': '\u041f\u0410\u0423\u0417\u0410 \u2014 \u041f\u0420\u041e\u0411\u0415\u041b \u0414\u041b\u042f \u0421\u0422\u0410\u0420\u0422\u0410',
       'possession': '\u0412\u041B\u0410\u0414\u0415\u041D\u0418\u0415',
       'shortcutsHint':
           '\u041F\u0420\u041E\u0411\u0415\u041B = \u0447\u0430\u0441\u044B  |  1/2/3 = \u0434\u043E\u043C  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -332,6 +342,8 @@ class AppLocalizations {
       'cancel': 'ABBRECHEN',
       'save': 'SPEICHERN',
       'language': 'Sprache',
+      'running': 'L\u00c4UFT',
+      'paused': 'PAUSIERT \u2014 LEERTASTE STARTET',
       'possession': 'BALLBESITZ',
       'shortcutsHint': 'LEERTASTE = Uhr  |  1/2/3 = Heim  |  8/9/0 = Gast',
       'undo': 'R\u00DCCKG\u00C4NGIG',
@@ -362,6 +374,8 @@ class AppLocalizations {
       'cancel': 'CANCELAR',
       'save': 'GUARDAR',
       'language': 'Idioma',
+      'running': 'EN MARCHA',
+      'paused': 'EN PAUSA \u2014 ESPACIO PARA INICIAR',
       'possession': 'POSESI\u00D3N',
       'shortcutsHint':
           'ESPACIO = reloj  |  1/2/3 = local  |  8/9/0 = visitante',
@@ -393,6 +407,8 @@ class AppLocalizations {
       'cancel': 'ANNULER',
       'save': 'SAUVEGARDER',
       'language': 'Langue',
+      'running': 'EN COURS',
+      'paused': 'EN PAUSE \u2014 ESPACE POUR D\u00c9MARRER',
       'possession': 'POSSESSION',
       'shortcutsHint':
           'ESPACE = horloge  |  1/2/3 = domicile  |  8/9/0 = ext\u00E9rieur',
@@ -424,6 +440,8 @@ class AppLocalizations {
       'cancel': 'ANNULLA',
       'save': 'SALVA',
       'language': 'Lingua',
+      'running': 'IN CORSO',
+      'paused': 'IN PAUSA \u2014 SPAZIO PER AVVIARE',
       'possession': 'POSSESSO',
       'shortcutsHint': 'SPAZIO = orologio  |  1/2/3 = casa  |  8/9/0 = ospite',
       'undo': 'ANNULLA',
@@ -459,6 +477,8 @@ class AppLocalizations {
       'cancel': '\u0391\u039A\u03A5\u03A1\u03A9\u03A3\u0397',
       'save': '\u0391\u03A0\u039F\u0398\u0397\u039A\u0395\u03A5\u03A3\u0397',
       'language': '\u0393\u03BB\u03CE\u03C3\u03C3\u03B1',
+      'running': '\u03a3\u0395 \u0395\u039e\u0395\u039b\u0399\u039e\u0397',
+      'paused': '\u03a0\u0391\u03a5\u03a3\u0397 \u2014 SPACE \u0393\u0399\u0391 \u0395\u039a\u039a\u0399\u039d\u0397\u03a3\u0397',
       'possession': '\u039A\u0391\u03A4\u039F\u03A7\u0397',
       'shortcutsHint':
           'SPACE = \u03C1\u03BF\u03BB\u03CC\u03B9  |  1/2/3 = \u03B3\u03B7\u03C0\u03B5\u03B4.  |  8/9/0 = \u03C6\u03B9\u03BB\u03BF\u03BE.',
@@ -491,6 +511,8 @@ class AppLocalizations {
       'cancel': '\u0130PTAL',
       'save': 'KAYDET',
       'language': 'Dil',
+      'running': '\u00c7ALI\u015eIYOR',
+      'paused': 'DURAKLADI \u2014 BA\u015eLATMAK \u0130\u00c7\u0130N BO\u015eLUK',
       'possession': 'TOP KONTROL\u00DC',
       'shortcutsHint':
           'BO\u015ELUK = saat  |  1/2/3 = ev  |  8/9/0 = deplasman',
@@ -526,6 +548,8 @@ class AppLocalizations {
       'cancel': '\u041E\u0422\u041A\u0410\u0416\u0418',
       'save': '\u0421\u0410\u0427\u0423\u0412\u0410\u0408',
       'language': '\u0408\u0435\u0437\u0438\u043A',
+      'running': '\u0422\u0415\u0427\u0415',
+      'paused': '\u041f\u0410\u0423\u0417\u0410 \u2014 \u0420\u0410\u0417\u041c\u0410\u041a \u0417\u0410 \u0421\u0422\u0410\u0420\u0422',
       'possession': '\u041F\u041E\u0421\u0415\u0414',
       'shortcutsHint':
           '\u0420\u0410\u0417\u041C\u0410\u041A = \u0441\u0430\u0442  |  1/2/3 = \u0434\u043E\u043C\u0430\u045B\u0438  |  8/9/0 = \u0433\u043E\u0441\u0442\u0438',
@@ -559,6 +583,8 @@ class AppLocalizations {
       'cancel': 'ODUSTANI',
       'save': 'SPREMI',
       'language': 'Jezik',
+      'running': 'TE\u010cE',
+      'paused': 'PAUZIRANO \u2014 RAZMAK ZA PO\u010cETAK',
       'possession': 'POSJED',
       'shortcutsHint': 'RAZMAK = sat  |  1/2/3 = doma\u0107i  |  8/9/0 = gosti',
       'undo': 'PONI\u0160TI',
@@ -589,6 +615,8 @@ class AppLocalizations {
       'cancel': 'PREKLI\u010CI',
       'save': 'SHRANI',
       'language': 'Jezik',
+      'running': 'TE\u010cE',
+      'paused': 'ZAUSTAVLJENO \u2014 PRESLEDEK ZA ZA\u010cETEK',
       'possession': 'POSEST',
       'shortcutsHint':
           'PRESLEDEK = ura  |  1/2/3 = doma\u010Di  |  8/9/0 = gostje',
